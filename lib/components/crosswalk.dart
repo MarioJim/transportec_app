@@ -4,8 +4,13 @@ class Crosswalk extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40.0,
-      child: Image.asset('assets/images/crosswalk.png'),
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Image.asset(
+        'assets/images/crosswalk.png',
+        fit: BoxFit.cover,
+        height: 30,
+        width: 72,
+      ),
     );
   }
 }
