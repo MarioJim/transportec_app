@@ -1,4 +1,4 @@
-package com.example.transportec_app
+package org.mariojim.transportec_app
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
