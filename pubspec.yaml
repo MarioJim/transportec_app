@@ -11,7 +11,7 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   http: ^0.12.1
-  assorted_layout_widgets: ^1.1.1
+  assorted_layout_widgets: ^1.3.3
   provider: ^4.1.2
 
 dev_dependencies:
@@ -29,6 +29,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/crosswalk.png
+    - assets/images/trees.png
+    - assets/images/cafeteria.png
   #  - images/a_dot_ham.jpeg
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

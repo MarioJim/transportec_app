@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:transportec_app/routes.dart';
-import 'package:transportec_app/services/api.dart';
+import 'views/routes_view.dart';
+import 'services/api.dart';
 
 void main() {
   runApp(
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(title: Text('Rutas')),
-        body: RoutesScreen(),
+        body: RoutesView(),
       ),
     );
   }

@@ -1,16 +1,29 @@
+import 'dart:async';
 import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
+const durationBetweenRefreshes =
+    kDebugMode ? Duration(days: 1000) : Duration(seconds: 3);
 const url = 'https://tvr.com.mx/transportec/getListadoRutasPantalla';
 
-class TransportecAPI with ChangeNotifier {
+class TransportecAPI with ChangeNotifier, WidgetsBindingObserver {
+  Timer _timer;
   Map<String, String> map;
   http.Client _client;
 
   TransportecAPI() {
     map = Map();
     _client = http.Client();
+    if (kDebugMode) {
+      updateDataDev();
+    }
+    WidgetsBinding.instance.addObserver(this);
+    _timer = new Timer.periodic(durationBetweenRefreshes, (timer) async {
+      await (kDebugMode ? updateDataDev() : updateData());
+    });
   }
 
   Future<void> updateData() async {
@@ -32,11 +45,30 @@ class TransportecAPI with ChangeNotifier {
     for (dynamic ruta in data['rutas']) {
       map[ruta['ubicacion']] = ruta['letra'];
     }
+    print(map);
     notifyListeners();
+  }
+
+  String getPlace(String position) {
+    return map[position];
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.paused) {
+      _timer.cancel();
+    } else if (state == AppLifecycleState.resumed) {
+      _timer = new Timer.periodic(durationBetweenRefreshes, (timer) async {
+        await (kDebugMode ? updateDataDev() : updateData());
+      });
+    }
   }
 
   @override
   void dispose() {
+    _timer.cancel();
+    WidgetsBinding.instance.removeObserver(this);
     _client.close();
     super.dispose();
   }

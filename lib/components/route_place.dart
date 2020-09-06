@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 class RoutePlace extends StatelessWidget {
   final String letter;
 
-  RoutePlace({@required this.letter});
+  RoutePlace(this.letter);
 
   @override
   Widget build(BuildContext context) {
     Color secondColor = letter == null ? Colors.grey : Colors.green;
+    final size = MediaQuery.of(context).size.width / 10;
     return Container(
       child: Text(
         letter ?? '',
@@ -27,8 +28,8 @@ class RoutePlace extends StatelessWidget {
       ),
       alignment: Alignment.center,
       constraints: BoxConstraints(
-        minHeight: 52.0,
-        maxWidth: 72.0,
+        minHeight: 50.0,
+        maxWidth: size,
       ),
     );
   }
