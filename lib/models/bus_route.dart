@@ -6,6 +6,10 @@ class BusRoute {
   BusRoute(this.letter, this.name, this.hour);
 
   factory BusRoute.fromJSON(dynamic json) {
-    return BusRoute(json['letra'], json['nombre'], json['hora']);
+    return BusRoute(
+      json['letra'],
+      json['nombre'],
+      json['hora'].toString().substring(0, 5),
+    );
   }
 }

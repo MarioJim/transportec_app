@@ -5,6 +5,7 @@ import '../components/crosswalk.dart';
 import '../components/route_place.dart';
 import '../components/route_sheet.dart';
 import '../components/trees.dart';
+import '../models/bus_route.dart';
 
 class RoutesView extends StatelessWidget {
   List<Widget> buildSection(int number, int length) {
@@ -17,10 +18,14 @@ class RoutesView extends StatelessWidget {
     );
   }
 
-  void showModal(BuildContext ctx, String place) {
-    if (place == null) return;
-    print(place);
-    showModalBottomSheet(context: ctx, builder: (_) => RouteSheet(place));
+  void showModal(BuildContext ctx, BusRoute busRoute) {
+    showModalBottomSheet(
+      context: ctx,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+      ),
+      builder: (_) => RouteSheet(busRoute),
+    );
   }
 
   @override

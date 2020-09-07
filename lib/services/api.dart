@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 import '../models/bus_route.dart';
 
-const tiemBetweenRefreshes = Duration(seconds: 5000);
+const tiemBetweenRefreshes = Duration(seconds: 5);
 const url = 'https://tvr.com.mx/transportec/getListadoRutasPantalla';
 
 class TransportecAPI with ChangeNotifier, WidgetsBindingObserver {
@@ -50,12 +50,18 @@ class TransportecAPI with ChangeNotifier, WidgetsBindingObserver {
     for (dynamic ruta in data['rutas']) {
       _map[ruta['ubicacion']] = BusRoute.fromJSON(ruta);
     }
-    print(_map);
     notifyListeners();
   }
 
-  BusRoute getRoute(String place) {
+  BusRoute getRouteByPlace(String place) {
     return _map[place];
+  }
+
+  BusRoute getRouteByLetter(String letter) {
+    return _map.values.firstWhere(
+      (r) => r.letter == letter,
+      orElse: () => null,
+    );
   }
 
   @override
