@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Favorites with ChangeNotifier {
   Set<String> _favorites;
 
   Favorites() {
     _favorites = Set();
+    retrieveFavorites();
   }
 
   bool isFavorite(String letter) {
@@ -18,5 +20,16 @@ class Favorites with ChangeNotifier {
       _favorites.add(letter);
     }
     notifyListeners();
+    saveFavorites();
+  }
+
+  void retrieveFavorites() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _favorites = (prefs.getStringList('favorites') ?? []).toSet();
+  }
+
+  void saveFavorites() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('favorites', _favorites.toList());
   }
 }
