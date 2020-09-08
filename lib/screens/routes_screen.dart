@@ -7,12 +7,12 @@ import '../components/routes_map.dart';
 import '../models/bus_route.dart';
 import '../services/api.dart';
 
-class RoutesView extends StatefulWidget {
+class RoutesScreen extends StatefulWidget {
   @override
-  _RoutesViewState createState() => _RoutesViewState();
+  _RoutesScreenState createState() => _RoutesScreenState();
 }
 
-class _RoutesViewState extends State<RoutesView> {
+class _RoutesScreenState extends State<RoutesScreen> {
   bool _alertIsOpen = false;
 
   void showModal(BuildContext ctx, BusRoute busRoute) {

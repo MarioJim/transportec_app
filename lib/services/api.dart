@@ -9,8 +9,8 @@ import 'package:timeago/timeago.dart' as timeago;
 import '../models/bus_route.dart';
 
 class TransportecAPI with ChangeNotifier, WidgetsBindingObserver {
-  Timer _timer;
   Map<String, BusRoute> _map;
+  Timer _timer;
   String _error;
   DateTime _lastConnection;
 
@@ -22,9 +22,7 @@ class TransportecAPI with ChangeNotifier, WidgetsBindingObserver {
     _updateData();
   }
 
-  BusRoute getRouteByPlace(String place) {
-    return _map[place];
-  }
+  BusRoute getRouteByPlace(String place) => _map[place];
 
   BusRoute getRouteByLetter(String letter) {
     return _map.values.firstWhere(
@@ -38,14 +36,15 @@ class TransportecAPI with ChangeNotifier, WidgetsBindingObserver {
   String get lastConnection => timeago.format(_lastConnection, locale: 'es');
 
   void _initalizeTimer() {
-    _timer = new Timer.periodic(Duration(seconds: 5), (_) async {
-      await _updateData();
-    });
+    _timer = new Timer.periodic(
+      Duration(seconds: 5),
+      (_) async => await _updateData(),
+    );
   }
 
   Future<void> _updateData() async {
     try {
-      http.Response response = await _queryData();
+      http.Response response = await http.post(_getUrl());
       if (response.statusCode != 200) throw Exception();
       dynamic data = jsonDecode(response.body);
       _map.clear();
@@ -60,9 +59,9 @@ class TransportecAPI with ChangeNotifier, WidgetsBindingObserver {
     notifyListeners();
   }
 
-  Future<http.Response> _queryData() => kDebugMode
-      ? http.get('http://192.168.1.71:8080')
-      : http.post('https://tvr.com.mx/transportec/getListadoRutasPantalla');
+  String _getUrl() => kDebugMode
+      ? 'http://192.168.1.71:8080'
+      : 'https://tvr.com.mx/transportec/getListadoRutasPantalla';
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
