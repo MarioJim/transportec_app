@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../components/cafeteria.dart';
 import '../components/crosswalk.dart';
 import '../components/route_place.dart';
 import '../components/trees.dart';
@@ -54,8 +55,8 @@ class RoutesMap extends StatelessWidget {
               RoutePlace('???', showModal),
               RoutePlace('???', showModal),
             ]),
-            SizedBox(height: 240),
-            Image.asset('assets/images/cafeteria.png', height: 180),
+            SizedBox(height: 100),
+            Cafeteria(),
           ],
         ),
       ],

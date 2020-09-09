@@ -20,7 +20,10 @@ class _RoutesScreenState extends State<RoutesScreen> {
     showModalBottomSheet(
       context: ctx,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
       ),
       builder: (_) => RouteSheet(busRoute),
     );
@@ -41,7 +44,10 @@ class _RoutesScreenState extends State<RoutesScreen> {
     if (error != null)
       Future.delayed(Duration.zero, () => showAlert(context, error));
     return Scaffold(
-      appBar: AppBar(title: Text('Rutas de Transportec')),
+      appBar: AppBar(
+        title: Text('Rutas de Transportec'),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: Column(children: [
           SizedBox(height: 4),
@@ -53,6 +59,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),
+          SizedBox(height: 20),
         ]),
       ),
       floatingActionButton: FloatingActionButton.extended(

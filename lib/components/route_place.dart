@@ -30,9 +30,7 @@ class _RoutePlaceState extends State<RoutePlace> {
     return GestureDetector(
       onTap: () => _route != null ? widget.onTap(context, _route) : {},
       child: AnimatedSwitcher(
-        duration: Duration(milliseconds: 700),
-        switchInCurve: Curves.fastOutSlowIn,
-        switchOutCurve: Curves.fastOutSlowIn,
+        duration: Duration(milliseconds: 300),
         transitionBuilder: (child, animation) =>
             FadeTransition(child: child, opacity: animation),
         child: Container(
@@ -40,8 +38,11 @@ class _RoutePlaceState extends State<RoutePlace> {
           key: ValueKey<String>(letter),
           child: Text(
             letter,
-            style: TextStyle(fontSize: 20.0),
             softWrap: false,
+            style: TextStyle(
+              fontSize: letter.length > 1 ? 18.0 : 22.0,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           alignment: Alignment.center,
           width: size,
