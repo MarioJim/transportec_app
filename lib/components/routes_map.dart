@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 
 import '../components/crosswalk.dart';
 import '../components/route_place.dart';
@@ -34,8 +33,7 @@ class RoutesMap extends StatelessWidget {
           SizedBox(height: 170),
           ...List.generate(6, (_) => Trees()).toList(),
         ]),
-        ColumnSuper(
-          innerDistance: -10.0,
+        Column(
           children: <Widget>[
             ...buildSection(1, 2),
             Crosswalk(),

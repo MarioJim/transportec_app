@@ -18,12 +18,10 @@ class TransportecApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Transportec App',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.teal,
+          accentColor: Color.fromRGBO(43, 194, 194, 1),
         ),
-        home: Scaffold(
-          appBar: AppBar(title: Text('Rutas')),
-          body: RoutesScreen(),
-        ),
+        home: RoutesScreen(),
       ),
     );
   }

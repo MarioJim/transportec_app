@@ -39,18 +39,21 @@ class _RoutesScreenState extends State<RoutesScreen> {
     final error = Provider.of<TransportecAPI>(context).error;
     if (error != null)
       Future.delayed(Duration.zero, () => showAlert(context, error));
-    return SingleChildScrollView(
-      child: Column(children: [
-        SizedBox(height: 4),
-        RoutesMap(showModal),
-        SizedBox(height: 12),
-        Consumer<TransportecAPI>(
-          builder: (_, api, __) => Text(
-            'Última conexión ${api.lastConnection}',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+    return Scaffold(
+      appBar: AppBar(title: Text('Rutas de Transportec')),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          SizedBox(height: 4),
+          RoutesMap(showModal),
+          SizedBox(height: 12),
+          Consumer<TransportecAPI>(
+            builder: (_, api, __) => Text(
+              'Última conexión ${api.lastConnection}',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }

@@ -36,15 +36,12 @@ class TransportecAPI with ChangeNotifier, WidgetsBindingObserver {
   String get lastConnection => timeago.format(_lastConnection, locale: 'es');
 
   void _initalizeTimer() {
-    _timer = new Timer.periodic(
-      Duration(seconds: 5),
-      (_) async => await _updateData(),
-    );
+    _timer = new Timer.periodic(Duration(seconds: 3), (_) => _updateData());
   }
 
   Future<void> _updateData() async {
     try {
-      http.Response response = await http.post(_getUrl());
+      http.Response response = await http.post(_url);
       if (response.statusCode != 200) throw Exception();
       dynamic data = jsonDecode(response.body);
       _map.clear();
@@ -59,7 +56,7 @@ class TransportecAPI with ChangeNotifier, WidgetsBindingObserver {
     notifyListeners();
   }
 
-  String _getUrl() => kDebugMode
+  String get _url => kDebugMode
       ? 'http://192.168.1.71:8080'
       : 'https://tvr.com.mx/transportec/getListadoRutasPantalla';
 
