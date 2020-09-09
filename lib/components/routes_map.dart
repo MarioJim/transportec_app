@@ -28,8 +28,8 @@ class RoutesMap extends StatelessWidget {
       children: [
         Column(children: [
           Row(children: [
-            RoutePlace('???', showModal),
-            RoutePlace('???', showModal),
+            RoutePlace('1-1-c', showModal),
+            RoutePlace('1-1-b', showModal),
           ]),
           SizedBox(height: 170),
           ...List.generate(6, (_) => Trees()).toList(),
@@ -48,12 +48,12 @@ class RoutesMap extends StatelessWidget {
         Column(
           children: [
             Row(children: <Widget>[
-              RoutePlace('???', showModal),
-              RoutePlace('???', showModal),
-              RoutePlace('???', showModal),
-              RoutePlace('???', showModal),
-              RoutePlace('???', showModal),
-              RoutePlace('???', showModal),
+              RoutePlace('1-1c', showModal),
+              RoutePlace('1-1d', showModal),
+              RoutePlace('1-1e', showModal),
+              RoutePlace('1-1f', showModal),
+              RoutePlace('1-1g', showModal),
+              RoutePlace('1-1h', showModal),
             ]),
             SizedBox(height: 100),
             Cafeteria(),
