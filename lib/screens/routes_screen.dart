@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../components/error_dialog.dart';
 import '../components/route_sheet.dart';
@@ -53,6 +54,15 @@ class _RoutesScreenState extends State<RoutesScreen> {
             ),
           ),
         ]),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.map, size: 30),
+        label: Text('Mapa de rutas'),
+        onPressed: () async {
+          const url =
+              'https://www.google.com/maps/d/u/0/embed?mid=10aCLErgwkxB0buEy3-1322U6EyVaToHg';
+          if (await canLaunch(url)) await launch(url);
+        },
       ),
     );
   }

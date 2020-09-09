@@ -14,7 +14,7 @@ class RouteSheet extends StatelessWidget {
     final favorites = Provider.of<Favorites>(context);
     final isFav = favorites.isFavorite(busRoute.letter);
     return Container(
-      height: 320,
+      height: 300,
       padding: const EdgeInsets.symmetric(vertical: 36, horizontal: 20),
       child: Column(children: [
         ListTile(
@@ -52,14 +52,14 @@ class RouteSheet extends StatelessWidget {
           onPressed: () => favorites.toggleFavorite(busRoute.letter),
           icon: Icon(
             isFav ? Icons.delete : Icons.favorite,
-            color: isFav ? Colors.red : Colors.grey,
+            color: isFav ? Colors.red : Theme.of(context).primaryColor,
             size: 36,
           ),
           label: Text(
             '${isFav ? 'Eliminar de' : 'Añadir a'} favoritos',
             style: TextStyle(
               fontSize: 18,
-              color: isFav ? Colors.red : Colors.grey,
+              color: isFav ? Colors.red : Theme.of(context).primaryColor,
             ),
           ),
         ),

@@ -30,7 +30,7 @@ class _RoutePlaceState extends State<RoutePlace> {
     return GestureDetector(
       onTap: () => _route != null ? widget.onTap(context, _route) : {},
       child: AnimatedSwitcher(
-        duration: Duration(milliseconds: 800),
+        duration: Duration(milliseconds: 700),
         switchInCurve: Curves.fastOutSlowIn,
         switchOutCurve: Curves.fastOutSlowIn,
         transitionBuilder: (child, animation) =>
